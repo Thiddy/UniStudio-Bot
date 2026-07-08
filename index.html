@@ -7,30 +7,58 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
-<body class="bg-slate-950 text-cyan-400 font-mono h-screen flex flex-col">
+<body class="bg-slate-950 text-cyan-400 font-mono h-screen flex flex-col justify-center items-center overflow-hidden">
 
-    <header class="p-4 border-b border-cyan-500/30 flex justify-between items-center shadow-[0_0_15px_rgba(6,182,212,0.15)]">
-        <h1 class="text-xl font-black tracking-widest text-white">🌌 UNISTUDIO BOT</h1>
-        <input type="password" id="apiKey" placeholder="Enter Roblox API Key" class="bg-slate-900 border border-cyan-500/50 rounded px-3 py-1 text-xs focus:outline-none focus:border-cyan-400">
-    </header>
+    <div id="lockScreen" class="w-full max-w-xl p-8 bg-slate-900/80 border border-cyan-500/30 rounded-lg shadow-[0_0_30px_rgba(6,182,212,0.1)] mx-4 z-50">
+        <h1 class="text-2xl font-black tracking-widest text-white text-center mb-6">🌌 UNISTUDIO BOT SYSTEM</h1>
+        
+        <div class="text-yellow-400 font-bold mb-2 flex items-center gap-2">🔒 INITIALIZATION REQUIRED</div>
+        <p class="text-slate-400 text-sm mb-6">Please enter a valid Roblox Open Cloud API Key to unlock the 3D generation workspace.</p>
+        
+        <div class="text-cyan-400 font-bold text-sm mb-2">💡 Setup Instructions:</div>
+        <ol class="list-decimal list-inside text-slate-300 space-y-2 text-xs mb-6 leading-relaxed">
+            <li>Go to the <span class="text-white font-bold">Roblox Creator Dashboard</span> (create.roblox.com).</li>
+            <li>Navigate to <span class="text-white font-bold">Credentials</span> &rarr; <span class="text-white font-bold">API Keys</span>.</li>
+            <li>Click <span class="text-white font-bold">Create API Key</span>.</li>
+            <li>Add these permissions: <span class="text-cyan-400">Universe Places (Write)</span>.</li>
+            <li>Set IP Restrictions to <span class="text-yellow-500 font-bold">0.0.0.0/0</span> (Required for Render access).</li>
+            <li>Copy your generated token key and paste it below.</li>
+        </ol>
 
-    <main class="flex-1 flex overflow-hidden">
-        <section class="w-1/2 p-6 flex flex-col justify-between border-r border-cyan-500/20 bg-slate-900/50">
-            <div id="chatConsole" class="flex-1 overflow-y-auto mb-4 p-4 bg-black/40 rounded border border-cyan-500/10 text-sm">
-                <p class="text-slate-500">// SYSTEM: UniStudio Bot initialized. Awaiting commands...</p>
-            </div>
-            <div class="flex gap-2">
-                <input type="text" id="promptInput" placeholder="Tell the AI what to build..." class="flex-1 bg-black border border-cyan-500/40 rounded p-3 text-white focus:outline-none focus:border-cyan-400">
-                <button onclick="sendCommand()" class="bg-cyan-600 hover:bg-cyan-500 text-black font-bold px-6 rounded transition">GENERATE</button>
-            </div>
-        </section>
+        <div class="flex flex-col gap-2">
+            <input type="password" id="apiKey" placeholder="Paste Roblox API Key here..." class="w-full bg-black border border-cyan-500/50 rounded p-3 text-white focus:outline-none focus:border-cyan-400 text-sm tracking-widest">
+            <button onclick="validateAndUnlock()" id="unlockBtn" class="w-full bg-cyan-600 hover:bg-cyan-500 text-black font-black py-3 rounded transition uppercase tracking-wider text-sm mt-2 shadow-[0_0_15px_rgba(6,182,212,0.3)]">
+                Connect & Initialize Workspace
+            </button>
+        </div>
+    </div>
 
-        <section id="viewport" class="w-1/2 bg-black relative">
-            <div class="absolute top-4 left-4 bg-slate-900/80 border border-cyan-500/30 px-3 py-1 rounded text-xs z-10">
-                LIVE 3D PREVIEW
+    <div id="mainWorkspace" class="hidden w-full h-full flex flex-col">
+        <header class="p-4 border-b border-cyan-500/30 flex justify-between items-center bg-slate-950 shadow-[0_0_15px_rgba(6,182,212,0.15)]">
+            <h1 class="text-xl font-black tracking-widest text-white">🌌 UNISTUDIO BOT</h1>
+            <div class="text-xs text-green-400 font-bold flex items-center gap-2 bg-green-500/10 border border-green-500/30 px-3 py-1 rounded">
+                ● ROBLOX CLOUD LINK ACTIVE
             </div>
-        </section>
-    </main>
+        </header>
+
+        <main class="flex-1 flex overflow-hidden">
+            <section class="w-1/2 p-6 flex flex-col justify-between border-r border-cyan-500/20 bg-slate-900/40">
+                <div id="chatConsole" class="flex-1 overflow-y-auto mb-4 p-4 bg-black/40 rounded border border-cyan-500/10 text-sm">
+                    <p class="text-green-400">// SYSTEM: Connection secure. UniStudio Bot online and ready to build!</p>
+                </div>
+                <div class="flex gap-2">
+                    <input type="text" id="promptInput" placeholder="Tell the AI what to build..." class="flex-1 bg-black border border-cyan-500/40 rounded p-3 text-white focus:outline-none focus:border-cyan-400">
+                    <button onclick="sendCommand()" class="bg-cyan-600 hover:bg-cyan-500 text-black font-bold px-6 rounded transition">GENERATE</button>
+                </div>
+            </section>
+
+            <section id="viewport" class="w-1/2 bg-black relative">
+                <div class="absolute top-4 left-4 bg-slate-900/80 border border-cyan-500/30 px-3 py-1 rounded text-xs z-10">
+                    LIVE 3D PREVIEW
+                </div>
+            </section>
+        </main>
+    </div>
 
     <script src="app.js"></script>
 </body>
