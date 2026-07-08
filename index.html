@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UniStudio Bot</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body class="bg-slate-950 text-cyan-400 font-mono h-screen flex flex-col">
+
+    <header class="p-4 border-b border-cyan-500/30 flex justify-between items-center shadow-[0_0_15px_rgba(6,182,212,0.15)]">
+        <h1 class="text-xl font-black tracking-widest text-white">🌌 UNISTUDIO BOT</h1>
+        <input type="password" id="apiKey" placeholder="Enter Roblox API Key" class="bg-slate-900 border border-cyan-500/50 rounded px-3 py-1 text-xs focus:outline-none focus:border-cyan-400">
+    </header>
+
+    <main class="flex-1 flex overflow-hidden">
+        <section class="w-1/2 p-6 flex flex-col justify-between border-r border-cyan-500/20 bg-slate-900/50">
+            <div id="chatConsole" class="flex-1 overflow-y-auto mb-4 p-4 bg-black/40 rounded border border-cyan-500/10 text-sm">
+                <p class="text-slate-500">// SYSTEM: UniStudio Bot initialized. Awaiting commands...</p>
+            </div>
+            <div class="flex gap-2">
+                <input type="text" id="promptInput" placeholder="Tell the AI what to build..." class="flex-1 bg-black border border-cyan-500/40 rounded p-3 text-white focus:outline-none focus:border-cyan-400">
+                <button onclick="sendCommand()" class="bg-cyan-600 hover:bg-cyan-500 text-black font-bold px-6 rounded transition">GENERATE</button>
+            </div>
+        </section>
+
+        <section id="viewport" class="w-1/2 bg-black relative">
+            <div class="absolute top-4 left-4 bg-slate-900/80 border border-cyan-500/30 px-3 py-1 rounded text-xs z-10">
+                LIVE 3D PREVIEW
+            </div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
