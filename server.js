@@ -5,6 +5,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Serves index.html and app.js automatically from the same folder
+app.use(express.static(__dirname));
+
 app.post('/generate', async (req, res) => {
     const { prompt } = req.body;
     
@@ -38,4 +41,6 @@ app.post('/generate', async (req, res) => {
     }
 });
 
-app.listen(3000, () => console.log('UniStudio Bot running on port 3000'));
+// Configured for Render's dynamic port allocation
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`UniStudio Bot running on port ${PORT}`));
