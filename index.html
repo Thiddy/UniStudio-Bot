@@ -20,9 +20,16 @@
             <li>Go to the <span class="text-white font-bold">Roblox Creator Dashboard</span> (create.roblox.com).</li>
             <li>Navigate to <span class="text-white font-bold">Credentials</span> &rarr; <span class="text-white font-bold">API Keys</span>.</li>
             <li>Click <span class="text-white font-bold">Create API Key</span>.</li>
-            <li>Add these permissions: <span class="text-cyan-400">Universe Places (Write)</span>.</li>
+            <li>Toggle <span class="text-yellow-500 font-bold">Restrict by Experience</span> to <span class="text-white font-bold">ON</span> and choose your game.</li>
+            <li>Add these <span class="text-cyan-400 font-bold">3 Required API Scopes</span>:
+                <ul class="list-disc list-inside pl-4 text-slate-400 space-y-0.5 mt-1">
+                    <li><span class="text-white">Universe Places</span> &rarr; <span class="text-cyan-400">universe-places:write</span></li>
+                    <li><span class="text-white">Universe Assets</span> &rarr; <span class="text-cyan-400">universe-assets:read & write</span></li>
+                    <li><span class="text-white">Universe Scripts</span> &rarr; <span class="text-cyan-400">universe-scripts:write</span></li>
+                </ul>
+            </li>
             <li>Set IP Restrictions to <span class="text-yellow-500 font-bold">0.0.0.0/0</span> (Required for Render access).</li>
-            <li>Copy your generated token key and paste it below.</li>
+            <li>Copy your token key and paste it below.</li>
         </ol>
 
         <div class="flex flex-col gap-2">
